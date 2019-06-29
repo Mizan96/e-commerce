@@ -1,0 +1,42 @@
+{% extends 'base/base.html' %} {% block header %} {% include 'base/navbar.html' %} {% endblock %} {% block user %} 
+{% include 'base/user.html' %} {% endblock %} {% block body %}
+<h4 class="text-center">Order Detail of {{ order_number }}</h4>
+<div class="container">
+    <p class="text-center">Order Number: {{ order_number }}</p>
+    <p class="text-center">Order Reference: {{ order_reference }}</p>
+    <p class="text-center">Cart Total: &#x9f3;{{ sub_total }}</p>
+    <p class="text-center">Shipping Total: &#x9f3;{{ shipping }}</p>
+    <p class="text-center">Total: &#x9f3;{{ total }}</p>
+</div>
+<h4 class="text-center"> Items in Cart:</h4>
+
+<div class="container">
+    {% for search in items %}
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6" style="border: 1px solid #ccc; margin: 10px;">
+            <div class="row">
+                <div class="col-4">
+                    <p>
+                        <a href="{% url 'products:individual_product_detail' pk=search.id %}">{{ forloop.counter }}. {{ search.title }}</a>
+                    </p>
+                </div>
+                <div class="col-4">
+                    <img src="{{ search.image1.url }}" alt="" style="width: 100px; height: 100px;">
+                </div>
+                <div class="col-4">
+                    <p>Price: &#x9f3;{{ search.price }}</p>
+                    {% if confirm %}
+                    <p style="color: red">Order Confirmed</p>
+                    {% else %}
+                    <p style="color: red">Order Not Confirmed</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-3"></div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

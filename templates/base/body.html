@@ -1,0 +1,59 @@
+
+<div id="body-div" class="container">
+    <div class="row">
+        <div class="col-9">
+
+             <!-- Nav pills -->
+    <ul class="nav nav-pills" role="tablist">
+            <li class="nav-item">
+            <a class="nav-link active" data-toggle="pill" href="#home">Featured Products</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" data-toggle="pill" href="#menu1">Best Selling Products</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" data-toggle="pill" href="#menu2">Latest Products</a>
+            </li>
+        </ul>
+
+        <!-- Tab panes -->
+    <div class="tab-content">
+            <div  class="tab-pane active"  id="home"><br>
+                {% include './left-container.html'  with products=featured_products location='/products/fetured/' %}
+            </div>         
+    
+    
+            
+            <div id="menu1" class="tab-pane fade"><br>
+                {% include './left-container.html'  with products=best_selling_products location='/products/best-selling/' %}
+            </div>
+
+           
+            <div id="menu2" class="tab-pane fade"><br>
+                {% include './left-container.html'  with products=latest_products location='/products/latest/' %}
+            </div>
+        </div>
+        <!-- end of menu -->
+
+
+
+        </div>
+        <div class="col-3">
+            {% if recommendation %}
+            <h4 class="container text-center">Recommended For You:</h4>
+            {% endif %}
+            {% for rec_item in recommendation %}
+            <div style="border: 1px solid #DDDDDD; margin: 2px; padding: 2px;">
+                <div class="row container">
+                    <a href="{{ rec_item.image1.url }}">
+                    <img src="{{ rec_item.image1.url }}" alt="" width="100px" height="80px">
+                    </a>
+                </div>
+                <div class="row container">
+                <a href="{% url 'products:individual_product_detail' pk=rec_item.id %}"><p class="small">{{ rec_item.title }}</p></a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

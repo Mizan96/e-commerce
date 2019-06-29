@@ -1,0 +1,16 @@
+{% extends 'base/base.html' %}
+
+{% block header %}
+    {% include 'base/navbar.html'  %}
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    {% for item in order %}
+    <div class="alert alert-danger" role="alert">
+        <a href="{% url 'shipping:detail' pk=item.id %}">{{ item }}</a>
+    </div>
+    {% endfor %}
+</div>
+    
+{% endblock %}

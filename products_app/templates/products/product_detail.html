@@ -1,0 +1,230 @@
+{% extends 'base/base.html' %}
+
+{% block header %}
+    {% include 'base/navbar.html' %}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+
+
+            <!-- this is product image section -->
+            <div class="col-5" id="left-image-section">
+                <div class="row">
+                    <div class="col-2">
+                        {% if obj.image1 %}
+                         <button  class="btn btn-outline-light" @click='image1'><img src="{{ obj.image1.url }}" class="img-rounded" 
+                            alt="Cinque Terre" width="55px" height="60px"></button>
+                            {% endif %}
+                        {% if obj.image2 %}
+                        <button @click='image2'  class="btn btn-outline-light"><img src="{{ obj.image2.url }}" class="img-rounded" 
+                            alt="Cinque Terre" width="55px" height="60px"></button>
+                            {% endif %}
+                        {% if obj.image3 %}
+                        <button @click='image3'  class="btn btn-outline-light"><img src="{{ obj.image3.url }}" class="img-rounded" 
+                            alt="Cinque Terre" width="55px" height="60px"></button>
+                            {% endif %}
+                        {% if obj.image4 %}
+                        <button @click='image4'  class="btn btn-outline-light"><img src="{{ obj.image4.url }}" class="img-rounded" 
+                            alt="Cinque Terre" width="55px" height="60px"></button> 
+                            {% endif %}
+                        {% if obj.image5 %}
+                        <button @click='image5'  class="btn btn-outline-light"><img src="{{ obj.image5.url }}" class="img-rounded" 
+                            alt="Cinque Terre" width="55px" height="60px"></button> 
+                        {% endif %}
+                    </div>
+                    <div class="col-10" >
+                            <a id="demo-trigger" href="#" :data-medium-url="imageSrc" :data-large-url="imageSrc">
+                        <img :src="imageSrc" class="img-rounded" 
+                        alt="Cinque Terre" width="380px" height="380px">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- this is product detail section -->
+            <div class="col-4 middle-product-detail-section">
+                <h4><b>{{ obj.title | title }}</b></h4>
+                <!-- <p><em>Amazon</em></p> -->
+                <div class="row" id="">
+                    <div class="col-4"> <a href=""><p class="small rating-count-div">{{ avg_rating }} Rating ({{ rating_count }})</p></a> </div>
+                    <div class="col-4"><a href=""><p class="small ques-count-div-review"> {{ reviews_count }} Reviews</p></a> </div>
+                    <div class="col-4"> <a href=""><p class="small ques-count-div">{{ques_count}} Question{% if ques_count > 1 %}s{% endif %}</p></a></div>
+                </div>
+                <hr>
+                <p class="strong"> Price: {{ obj.price }}tk</p>
+                {% if obj.in_stock > 0 %}
+                <h5>In Stock</h5>
+                <h6>{{ obj.in_stock }}</h6>
+                {% else %}
+                <button  class="btn btn-danger" disabled>Out of Stock</button>
+                {% endif %}
+                <p class="product-description"><ins>{{ obj.product_description }}</ins></p>
+            </div>
+
+
+
+            
+            <div class="col-3" id="rigth-product-cart-section">
+                <!-- this is product cart section -->
+                    <div id="cart-section">
+                        <div class="container">
+                            {% if obj.in_stock > 0 %}
+                            <form method="POST" class="quantity-form">
+                                {% csrf_token %}
+                                <label for="">Qty:</label>
+                                <input type="hidden" class="produt-cart-id" name="produt-cart-name" value="{{ obj.id }}">
+                                <input type="hidden" class="in-stock-amount" name="in-stock-amount" value="{{ obj.in_stock }}">                                
+                                {% if cart_amount_count %}
+                                    <input type="text" class="qty-name-id" name="qty-name" value="{{ cart_amount_count }}">
+                                    <p style="color: red;" class="error-cart-amount"></p>
+                                {% endif %}
+                            </form>
+                            {% else %}
+                            <label for="">Qty:</label>
+                            <input type="text" class="qty-name-id" name="qty-name" value="1" disabled>
+                            {% endif %}
+                            {% if obj.in_stock > 0 %}
+                                {% include './cart-form.html' with cart=cart product=obj %}
+                            {% else %}
+                            <button type='submit'  class='btn btn-warning btn-block' disabled><i class="fas fa-cart-plus add-to-cart-button"></i>Add to cart</button>
+                            {% endif %}
+                            {% if request.user.is_authenticated %}
+                            {% include './wish-form.html' with wish=wish product=obj %}
+                            {% else %} 
+                            <button class="btn btn-info btn-block change-div" disabled><i class="far fa-heart add-to-wishlist-button"></i>Add To Wishlist</button>
+                            {% endif %}                           
+                            <hr>
+                            <p>Rate this Products:</p>
+                            <form method="POST" class="rating-form">
+                            {% csrf_token %}
+                            {% if request.user.is_authenticated %}
+                            <select class="custom-select user-rating-div" name='rating-option'>
+                            {% else %}
+                            <select class="custom-select user-rating-div" name='rating-option' disabled>
+                            {% endif %}
+                                <option value="1" class="text-center">One Star</option>
+                                <option value="2" class="text-center">Two Stars</option>
+                                <option value="3" class="text-center">Three Stars</option>
+                                <option value="4" class="text-center">Four Stars</option>
+                                <option value="5" class="text-center">Five Stars</option>
+                            </select>
+                            </form>
+                            <hr>                
+                        </div>
+                    </div>
+                    <hr>
+                    <!-- Rec Section -->
+                    <div class="row">
+                            {% if recommendation %}
+                            <p class="container text-center">Recommended For You:</p>
+                            {% endif %}
+                            {% for rec_item in recommendation %}
+                            <div class="col-sm-12">
+                            <div style="border: 1px solid #DDDDDD; margin: 2px; padding: 2px;">
+                                <div class="row container" style="margin-left: 20px;">
+                                    <a href="{{ rec_item.image1.url }}">
+                                    <img src="{{ rec_item.image1.url }}" alt="" width="100px" height="80px">
+                                    </a>
+                                </div>
+                                <div class="row container">
+                                <a href="{% url 'products:individual_product_detail' pk=rec_item.id %}"><p class="small" style="margin-left: 20px;">{{ rec_item.title }}</p></a>
+                                </div>
+                            </div>
+                            </div>
+                            {% endfor %}
+                    </div>
+            </div>
+        </div>
+
+
+
+        
+        <!-- this is q and a and product suggestion section -->
+        <div class="row">
+            <!-- this is question and answer section -->
+            <div class="col-6">
+                <hr>
+                <hr>
+                <h4 class="container">Customer Questions & Answers</h4>
+                    <div class="pagedown-div">
+                    <form method="POST" class="q-and-a-form">
+                        {{ form.media }}
+                        {% csrf_token %}
+                        {{ form.question }}
+                        <div class="float-right">
+                            {% if request.user.is_authenticated %}
+                            <button type="submit" class="btn btn-success qusetion-submit-button">Submit</button>
+                            {% else %}
+                            <button type="submit" class="btn btn-success qusetion-submit-button" disabled>Submit</button>
+                            {% endif %}
+                        </div>
+                    </form>
+                    </div>
+                    <div class="container">
+                        <hr>
+                        <hr>
+                        <hr>  
+                    </div>
+                    <div class="container comment-short-list">
+                        {% for q in ques %}
+                        <div class="design-question-div">
+                        <div class=" container repeating-body">
+                        <p>{{ q.question }}</p>
+                        </div>
+                        <p class="text-right container">By <a href="#">{{ q.user.get_full_name }}</a> | on {{ q.updated | date:"y-m-d"}} </p>
+                        </div>
+                        {% endfor %}
+
+                         <p class="text-right"><a href="#"> see more....</a></p>
+                    </div>
+
+            </div>
+
+            <!-- this is customer review sections -->
+            <div class="col-6">
+                <hr>
+                <hr>
+                <div class="pagedown-div-review">
+                    <h4 class="container">Customer Reviews</h4>
+                    <form method="POST" class="review-form">
+                        <!-- {{ form.media }} -->
+                        {% csrf_token %}
+                        {{ review_form.review }}
+                        <div class="float-right">
+                            {% if request.user.is_authenticated %}
+                            <button type="submit" class="btn btn-success qusetion-submit-button">Submit</button>
+                            {% else %}
+                            <button type="submit" class="btn btn-success qusetion-submit-button" disabled>Submit</button>
+                            {% endif %}
+                        </div>
+                    </form>
+                </div>
+                <div class="container">
+                    <hr>
+                    <hr>
+                    <hr>  
+                </div>
+                <div class="container comment-short-list-review">
+                    {% for re in reviews %}
+                    <div class="design-question-div-review">
+                    <div class="container repeating-body-review">
+                        <p>{{ re.review }}</p>
+                    </div>
+                    <p class="text-right container">By <a href="#">{{ re.user.get_full_name }}</a> | on {{ re.updated | date:"y-m-d" }} </p>
+                    </div>
+                    {% endfor %}
+
+                        <p class="text-right"><a href="#"> see more....</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+<script src="/static/js/images-slider.js"></script>
+{% endblock %}

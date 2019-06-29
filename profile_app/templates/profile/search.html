@@ -1,0 +1,10 @@
+<div class="container">
+    <h4 class="text-center"> {{ search.count }} items</h4>
+    {% for item in search %}
+    <div class="alert alert-info" role="alert">
+        <p>
+            You have searched: <b>{{ item.word }}</b> -  {{ item.timestamp | timesince }} ago
+        </p>
+    </div>
+    {% endfor %}
+</div>

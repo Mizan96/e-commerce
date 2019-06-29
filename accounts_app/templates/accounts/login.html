@@ -1,0 +1,21 @@
+        {% extends 'base/base.html' %}
+
+{% block header %}
+    {% include 'base/navbar.html' %}
+{% endblock %}
+
+{% block body %}
+    <h4 class="text-center">Log In</h4> 
+        <div class="container register-form">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                {% csrf_token %}
+                {{ form }}
+                <a href="{% url 'accounts:signup' %}">Sign Up?</a><br>
+                <a href="{% url 'password_reset' %}">Forget Password?</a>
+                <button class="btn btn-info btn-block">Submit</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

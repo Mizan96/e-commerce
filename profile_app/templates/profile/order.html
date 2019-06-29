@@ -1,0 +1,18 @@
+<div class="container">
+    <h4 class="text-center"> {{ order.count }} items</h4>
+    {% for item in order %}
+    <div 
+    {% if item.order_status %}
+    class="alert alert-info" 
+    {% else %}
+    class="alert alert-danger"
+    {% endif %} 
+    role="alert">
+        <p>
+            <a href="{% url 'profile:order' pk=item.id %}">Order Number:<b>{{ item.order_number }}</b>-
+            Order Reference: <b>{{ item.id }}</b>
+            </a> -  {{ item.updated | timesince }} ago
+        </p>
+    </div>
+    {% endfor %}
+</div>

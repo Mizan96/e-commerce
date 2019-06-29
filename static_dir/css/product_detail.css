@@ -1,0 +1,187 @@
+.disabledbutton {
+    pointer-events: none;
+    opacity: 0.4;
+}
+#left-image-section button, select{
+    margin-top: 2px;
+    margin-right: 10px;
+}
+#cart-section{
+    margin-top: 20px;
+    border: 1px solid #DDDDDD;
+    min-height: 200px;
+}
+#cart-section button{
+    margin-top: 5px;
+    margin-bottom: 10px; 
+
+}
+
+#cart-section form{
+    margin-top: 5px;
+} 
+#cart-section input{
+    width: 50px;
+    height: 20px;
+}
+.add-to-cart-button{
+    float: left;
+    color: green;
+}
+
+.add-to-wishlist-button{
+    float: left;
+    color: burlywood;
+}
+
+.start-section{
+    color: #E0A800;
+}
+
+.start-blank-section{
+    color: #ffffff;
+}
+
+#add-product label{
+    class: form-control;
+}
+
+#add-product label{
+    class: form-control; 
+}
+
+.product-add-first {
+    border: 5px solid #F7F7F9;
+    padding: 20px;
+    margin: 10px;
+}
+
+.product-offer-section{
+    border: 5px solid #F7F7F9;
+    padding: 20px;
+    margin: 10px;
+}
+
+/* #product-offer-div-section .disable{
+    pointer-events: none;
+    opacity: 0.4;
+} */
+
+/* pagedown widget */
+.pagedown-div .wmd-panel
+{
+	margin-left: 10%;
+	margin-right: 1%;
+	width: 400px;
+	min-width: 400px;
+}
+.pagedown-div .wmd-panel p
+{
+    max-width: 400px;
+    max-height: 400px;
+    overflow-x: auto;
+    overflow-y: auto;
+}
+.pagedown-div .wmd-input 
+{
+	height: 300px;
+	width: 100%;
+	background-color: white;
+	border: 1px solid #C8CCD0;
+}
+
+.pagedown-div .wmd-button-row 
+{
+	position: relative;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	/* margin-top: 10px; */
+	padding: 3px;
+	height: 28px;
+	border:  1px solid #D7DCE1;
+}
+.repeating-body p{
+    overflow-x: auto;
+}
+.repeating-body p img {
+    width: 480px;
+    max-height: 480px;
+}
+
+.design-question-div{
+    border: 1px solid #D7DCE1;
+    margin-top: 10px; 
+}
+
+.qusetion-submit-button{
+    margin-right: 72px;
+}
+
+
+
+/* ***********************************************This is customer review section************************ */
+.pagedown-div-review .wmd-panel
+{
+	margin-left: 10%;
+	margin-right: 1%;
+	width: 400px;
+	min-width: 400px;
+}
+.pagedown-div-review .wmd-panel p
+{
+    max-width: 400px;
+    max-height: 400px;
+    overflow-x: auto;
+    overflow-y: auto;
+}
+.pagedown-div-review .wmd-input 
+{
+	height: 300px;
+	width: 100%;
+	background-color: white;
+	border: 1px solid #C8CCD0;
+}
+
+.pagedown-div-review .wmd-button-row 
+{
+	position: relative;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	/* margin-top: 10px; */
+	padding: 3px;
+	height: 28px;
+	border:  1px solid #D7DCE1;
+}
+.repeating-body-review p{
+    overflow-x: auto;
+}
+
+.repeating-body-review p img{
+    width: 480px!important;
+    max-height: 480px;
+}
+
+.design-question-div-review{
+    border: 1px solid #D7DCE1;
+    margin-top: 10px; 
+}
+
+.qusetion-submit-button-review{
+    margin-right: 72px;
+}
+.product-description{
+    width: 360px;
+}
+
+.product-description p img{
+    width: 360px;
+}
+
+
+/* imgaeg opacity */
+
+.card-img-top img:hover {
+    opacity: 0.4;
+}

@@ -1,0 +1,26 @@
+{% extends 'base/base.html' %}
+
+{% block header %}
+    {% include 'base/navbar.html' %}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h4 class="text-center">Your Billing Info:</h4>
+        <div class="container">
+            <p class="text-center">Order Number: {{ order_number }}</p>
+            <p class="text-center">Cart Total: &#x9f3;{{ sub_total }}</p>
+            <p class="text-center">Shipping Total: &#x9f3;{{ shipping }}</p>
+            <p class="text-center">Total: &#x9f3;{{ total }}</p>     
+        </div>
+
+        <div class="container">
+            <h4 class="text-center">Billing Profile:</h4>
+            <p class="h5">+88018780... is our bKash Number:</p>
+            <p class="h5"> You have to pay <span style="color: red">&#x9f3;{{ total }}</span> and use  <span style="color: red">{{ reference }}</span>  as Reference in bKash payment</p>
+            <p>After sending money enter your bKash Number, transaction number and hit submit:</p>
+            {% include 'base/bill.html' %}
+        </div>
+    </div>
+{% endblock %}
+

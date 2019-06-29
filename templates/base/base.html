@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <!-- bootstrap css link -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+    crossorigin="anonymous">
+
+  <!-- font awesome link -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+    crossorigin="anonymous">
+
+  <!-- my  css file link -->
+  <link rel="stylesheet" href="{% static 'css/home.css' %}">
+  <link rel="stylesheet" href="{% static 'css/login_signup.css' %}">
+  <link rel="stylesheet" href="/static/css/product_detail.css">
+  <link rel="stylesheet" href="/static/css/jquery.scrolltop.css">
+  <link rel="stylesheet" href="/static/css/jquery_image_quickview.css">
+  <link rel="stylesheet" type="text/css" href="/static/css/jquery.leroy-zoom.css">
+
+  <style>
+    /* .custom-red { background: red; } */
+  </style>
+
+</head>
+
+<body>
+  <div style="min-height: 570px;">
+    <!-- structure of the web page  -->
+    {% block header %}{% endblock %}
+    <div class="search-result-form" style="position: relative;">
+      <div class="search-relative-div" style="position: absolute;">
+      </div>
+    </div>
+    {% block user %}{% endblock %} {% block slider %}{% endblock %} {% block body %}{% endblock %} {% block footer %} {% endblock%}
+  </div>
+  <!-- <div style="position: absolute; bottom: 5px; margin-left: 583px;">  -->
+    <hr>
+  <p id="copyrigth" class="text-center"></p>
+  <!-- </div/> -->
+  <!-- <p class="text-center all-rights">All rigths</p> -->
+  <!-- js link for bootstrap -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+    crossorigin="anonymous"></script>
+
+  <!-- Quick Image View -->
+  <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+  <script src="/static/js/jquery_image_quickview.js"></script>
+
+  <!-- markedjs cdn -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- vue js link -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+  <!-- my js -->
+  <script>
+    var d = new Date();
+    document.getElementById('copyrigth').innerHTML = '&copy;' + d.getFullYear() + ' microcircuitry.com';
+  </script> {% block js %}{% endblock %}
+  <script src="/static/js/rating.js"></script>
+  <script src="/static/js/cart-amount.js"></script>
+  <script src="/static/js/cart.js"></script>
+  <script src="/static/js/qna.js"></script>
+  <script src="/static/js/review.js"></script>
+  <script src="/static/js/search.js"></script>
+  <script src="/static/js/cart-amount.js"></script>
+  <script src="/static/js/wish.js"></script>
+  <script src="/static/js/jquery.scrolltop.js"></script>
+  <script type="text/javascript" src="/static/js/jquery.leroy-zoom.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+
+      $("#demo-trigger").leroyZoom({
+        zoomTop: 106,
+        zoomLeft: 580
+      });
+
+    });
+  </script>
+  <script>
+    $.scrolltop({
+      template: '^'
+    });
+  </script>
+
+
+
+
+</body>
+
+</html>

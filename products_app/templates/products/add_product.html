@@ -1,0 +1,105 @@
+{% extends 'base/base.html' %}
+
+
+{% block header %}
+    {% include 'base/navbar.html' %}
+{% endblock %}
+
+{% block body %}
+   
+    {{ form.media }}
+    <div class="container">
+        <div id="product-add-form">
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% load widget_tweaks %}
+<h4 class="text-center"> Product Basic Info</h4>
+        <div class="product-add-first">
+        <!-- title and price of the product -->
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group row">
+                        <div class="col-sm-4">
+                            {{ form.product_category.label_tag }}
+                        </div>
+                        <div class="col-sm-8">
+                            {{ form.product_category|add_class:'form-control'|set_data:"v-model='productInfo.id_product_category'" }}
+                            <!-- {{ form. }} -->
+                            <hr>
+                        </div>
+                        
+                    </div>
+                </div>
+
+
+                <div class="col-sm-4">
+                    <div class="form-group row">
+                        <div class="col-sm-2">
+                            {{ form.title.label_tag }}
+                        </div>
+                        <div class="col-sm-10">
+                            {{ form.title }}
+                            <hr>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <div class="col-sm-4">
+                    <div class="form-group row">
+                        <div class="col-sm-4">
+                            {{ form.price.label_tag }}
+                        </div>
+                        <div class="col-sm-8">
+                            {{ form.price|add_class:'form-control'}}
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+            </div>
+            
+            <!-- Image field -->
+            <div class="form-group">
+                {{ form.image1.label_tag }}
+                {{ form.image1|add_class:'form-control-file'}}
+                {{ form.image2.label_tag }}
+                {{ form.image2|add_class:'form-control-file' }}
+                {{ form.image3.label_tag }}
+                {{ form.image3|add_class:'form-control-file' }}
+                {{ form.image4.label_tag }}
+                {{ form.image4|add_class:'form-control-file' }}
+                {{ form.image5.label_tag }}
+                {{ form.image5|add_class:'form-control-file' }}
+            </div> 
+            <hr>
+            
+            <!-- featured checkbox -->
+            <div class="form-group">
+                <div class="form-check">
+                    {{ form.featured }}
+                    <label class="form-check-label" for="gridCheck">
+                    {{ form.featured.label }}
+                    </label>
+                </div>
+            </div>
+            <hr>
+
+            
+
+
+
+           {{ form.product_description }}
+            
+
+
+        </div>
+            <button type="submit" class="btn btn-info">Submit</button>
+        </form>
+    </div>
+    </div>
+{% endblock %}
+
+
+{% block js %}
+{% endblock %}

@@ -1,0 +1,19 @@
+<form method="POST">
+        {% load widget_tweaks %}
+        {% csrf_token %}
+        <div class="form-group">
+            {{form.first_name.label_tag}}
+            {{ form.first_name| add_class:"form-control" }}
+        </div>
+        <div class="form-group">
+            {{form.last_name.label_tag}}
+            {{ form.last_name| add_class:"form-control" }}
+        </div>
+        <div class="form-group">
+            {{form.email.label_tag}}
+            {{ form.email| add_class:"form-control" }}
+        </div>
+        <div class="row ">
+        <button  type="submit" class="btn btn-info btn-block" name="profile-form">Submit</button>
+        </div>
+    </form>

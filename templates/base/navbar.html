@@ -1,0 +1,104 @@
+{% url 'accounts:logout' as logout %}
+{% url 'accounts:login' as login  %}
+{% url 'accounts:signup' as signup %}
+{% url 'home' as home %}
+{% url 'profile:home' as profile %}
+{% url 'profile:history' as history %}
+{% url 'products:fetured' as featured %}
+{% url 'products:best-selling' as best %}
+{% url 'products:latest' as latest %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+        <a class="navbar-brand">microcircuitry</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="{{ home }}">HOME<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  DEPARTMENTS
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  {% for object in cat %}
+                  <a class="dropdown-item" href="{% url 'products:all_products_in_a_category'  object.id %}">{{ object.title }}</a>
+                  <!-- <div class="dropdown-divider"></div> -->
+                  {% endfor %}
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  SHOP
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="{{ featured }}">Featured Products</a>
+                  <a class="dropdown-item" href=" {{ best }}">Best Selling Products</a>
+                  <a class="dropdown-item" href="{{ latest }}">Latest Products</a>
+                </div>
+              </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                ACCOUNT
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{ signup }}">Sign Up</a>
+                <a class="dropdown-item" href="{{ login }}">Log In</a>
+                <a class="dropdown-item" href="{{ logout }}">Log Out</a>
+                <a class="dropdown-item" href="{{ profile }}">Profile</a>
+                <a class="dropdown-item" href="{{ history }}">User History</a>
+                <!-- <div class="dropdown-divider"></div> -->
+              </div>
+            </li>
+          </ul>
+          <ul class="navbar-nav mr-auto">
+            {% if not request.user.is_authenticated %}
+            <li class="nav-item active">
+              <a class="nav-link" href="{{ login }}"><i class="fas fa-user-plus"></i>Login</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ signup }}"><i class="fas fa-address-book"></i>Signup</a>
+            </li>
+            {% else %}
+            <li class="nav-item active">
+              <a class="nav-link" href="{{ logout }}"><i class="fas fa-user-minus"></i>Logout</a>
+            </li>
+            {% if request.user.is_staff or request.user.is_superuser %}
+            <li class="nav-item active"></li>
+              <a class="nav-link" href="{% url 'admin:index' %}"><i class="fas fa-user-minus"></i>Admin</a>
+            </li>
+            <li class="nav-item active"></li>
+              <a class="nav-link" href="{% url 'shipping:order' %}">Order</a>
+            </li>
+            {% endif %}
+            {% endif %}
+          </ul>
+              <div style="display: block">
+              <form class="form-inline my-2 my-lg-0 search-form-ajax" method="POST" action="{% url 'search:home' %}" autocomplete="off">
+                  {% csrf_token %}
+                  <input class="form-control mr-sm-2" type="search" placeholder="Search" 
+                  aria-label="Search" name="name_search" id="id_search">
+                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+              </form>
+              <div class="result-of-form" style="position: absolute; background: #F8F9FA; width: 200px;  max-height: 500px; overflow: auto; z-index: 1;">
+
+              </div>
+              </div>
+
+
+
+
+
+
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="{{ profile }}"><i class="fas fa-users"></i></a>
+            </li>
+            <li class="nav-item active">
+              <a href="{% url 'cart:home' %}"><i class="fas fa-cart-plus navbar-cart-count" style="color: green">{{ request.session.in_cart }}</i></a>
+            </li>
+          </ul>
+        </div>
+      </nav>

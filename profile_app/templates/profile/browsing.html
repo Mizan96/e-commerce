@@ -1,0 +1,12 @@
+<div class="container">
+    <h4 class="text-center"> {{ qs.count }} items</h4>
+    {% for item in qs %}
+    <div class="alert alert-info" role="alert">
+        <p>
+            You viewed:  
+            <a href="{% url 'products:individual_product_detail' pk=item.obj_id  %}">
+            {{ item.content_object }}</a> -  {{ item.timestamp | timesince }} ago
+        </p>
+    </div>
+    {% endfor %}
+</div>

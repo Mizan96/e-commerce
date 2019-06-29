@@ -1,0 +1,17 @@
+{% extends 'base/base.html' %}
+
+{% block header %}
+    {% include 'base/navbar.html' %}
+{% endblock %}
+
+{% block body %}
+    {% if order_confirm %}
+    <div class="alert alert-success container text-center" role="alert" style="margin-top: 10px;">
+        Order Successful
+    </div>
+    {% else %}
+    <div class="alert alert-danger container text-center" role="alert">
+        Your Order is not confirmed. Please contract with us. 
+    </div>
+    {% endif %}
+{% endblock %}

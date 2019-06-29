@@ -1,0 +1,49 @@
+{% extends 'base/base.html' %} {% block header %} {% include 'base/navbar.html' %} {% endblock %} {% block body %}
+<div class="container">
+    <h4 class="text-center">Order Details:</h4>
+    <div class="text-center">
+        <p>Order Number: {{ order_instance.order_number }}</p>
+        <p>Order Reference: {{ order_instance.id }}</p>
+        <p>Cart Total: &#2547;{{ cart_instance.subtotal }}</p>
+        <p>Shipping Total: &#2547;{{ cart_instance.shipping }}</p>
+        <p>Order Total: &#2547;{{ cart_instance.total }}</p>
+        <p>bKash Number: {{ order_instance.order_bkash_number }}</p>
+        <p>bKash Transaction Number: {{ order_instance.transaction_number }}</p>
+    </div>
+    <div>
+        <h4 class="text-center">Products:</h4><div class="container">
+                {% for search in items %}
+                <div class="row">
+                    <div class="col-3"></div>
+                    <div class="col-6" style="border: 1px solid #ccc; margin: 10px;">
+                        <div class="row">
+                            <div class="col-4">
+                                <p>
+                                    <a href="{% url 'products:individual_product_detail' pk=search.id %}">{{ forloop.counter }}. {{ search.title }}</a>
+                                </p>
+                            </div>
+                            <div class="col-4">
+                                <img src="{{ search.image1.url }}" alt="" style="width: 100px; height: 100px;">
+                            </div>
+                            <div class="col-4">
+                                <p>Price: &#x9f3;{{ search.price }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3"></div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <h4 class="text-center">Confirm Order:</h4>
+            <div class="text-center">
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form }}<br>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+
+    </div>
+</div>
+{% endblock %}
