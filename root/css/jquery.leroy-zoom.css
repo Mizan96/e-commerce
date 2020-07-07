@@ -1,0 +1,49 @@
+
+#leroy_zoom_frame {
+	width:600px;
+	height:600px;        
+	background:#F6F6F6;
+    color:#333;
+    position:absolute;
+	overflow:hidden;
+	line-height:300px;
+	border:1px solid #E9ECEF;
+	text-align: center;
+	/* border-radius: 10%; */
+	-khtml-border-radius: 0;
+}
+
+a.zoomable .zoom-cursor {
+	display: none;
+	position: absolute;
+}
+
+a.zoomable {
+	cursor: crosshair;
+}
+
+a.magnifiable .zoom-cursor:after {
+	content: "Click to magnify";
+	border: 1px solid #fff;
+	font-size: 11px;
+	background-color: #72BF44;
+	line-height: 18px;
+	color: #fff;
+	display: block;
+	width: 100px;
+	text-align: center;
+	margin-left: -106px;
+	margin-top: -24px;
+}
+
+a.magnified .zoom-cursor:after {
+	width: 200px;
+	height: 200px;
+	background-color: #FFF;
+	margin-left: -40px;
+	margin-top: -40px;
+	border: 2px dotted #72BF44;
+	opacity: .6;
+	border-radius: 100%;
+	-khtml-border-radius: 0;
+}
