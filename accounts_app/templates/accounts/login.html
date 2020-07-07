@@ -12,8 +12,7 @@
             <div class="form-group">
                 {% csrf_token %}
                 {{ form }}
-                <a href="{% url 'accounts:signup' %}">Sign Up?</a><br>
-                <a href="{% url 'password_reset' %}">Forget Password?</a>
+                <a href="{% url 'accounts:signup' %}">Sign Up?</a>
                 <button class="btn btn-info btn-block">Submit</button>
             </div>
         </form>
