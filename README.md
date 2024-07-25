@@ -2,6 +2,7 @@
 ## This is an e-commerce project using the Django web framework.
 
 ### Requirements for installing this web app:
+#### Python version 3.7
 ```
 pip install ﻿Django==1.11.18
 pip install Pillow==7.2.0
